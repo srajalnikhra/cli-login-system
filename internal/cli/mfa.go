@@ -3,6 +3,7 @@ package cli
 import (
 	"fmt"
 
+	"github.com/skip2/go-qrcode"
 	"github.com/srajalnikhra/cli-login-system/internal/mfa"
 	"github.com/srajalnikhra/cli-login-system/internal/repository"
 	"github.com/srajalnikhra/cli-login-system/internal/session"
@@ -20,17 +21,32 @@ func EnableMFA() {
 		return
 	}
 
-	fmt.Println("\nOpen this URL in any QR generator or scan it directly:")
-	fmt.Println(key.URL())
+	fmt.Println("\nScan this QR Code with Google Authenticator:\n")
+
+	qr, err := qrcode.New(key.URL(), qrcode.Medium)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	bitmap := qr.Bitmap()
+
+	for _, row := range bitmap {
+		for _, cell := range row {
+			if cell {
+				fmt.Print("██")
+			} else {
+				fmt.Print("  ")
+			}
+		}
+		fmt.Println()
+	}
 
 	err = repository.EnableMFA(session.CurrentUser.Username, key.Secret())
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
-
-	fmt.Println()
-	fmt.Println(key.URL())
 
 	session.CurrentUser.MFAEnabled = true
 	session.CurrentUser.TOTPSecret = key.Secret()

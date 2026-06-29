@@ -1,9 +1,7 @@
-version: "3.9"
 
 services:
   postgres:
     image: postgres:17
-
     container_name: cli-login-postgres
 
     restart: always
@@ -18,6 +16,19 @@ services:
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: cli-login-app
+
+    depends_on:
+      - postgres
+
+    environment:
+      DB_HOST: postgres
+
+    stdin_open: true
+    tty: true
 
 volumes:
   postgres_data:

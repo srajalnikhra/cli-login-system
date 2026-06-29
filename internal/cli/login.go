@@ -31,7 +31,6 @@ func Login() {
 		return
 	}
 
-
 	if !auth.CheckPasswordHash(password, user.PasswordHash) {
 		fmt.Println("\n❌ Invalid username or password")
 		return
