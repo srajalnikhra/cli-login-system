@@ -5,6 +5,7 @@ import (
 	"github.com/srajalnikhra/cli-login-system/internal/models"
 )
 
+// CreateUser inserts a new user into the database.
 func CreateUser(user models.User) error {
 	query := `
 	INSERT INTO users (username, password_hash, mfa_enabled, totp_secret)
@@ -22,6 +23,8 @@ func CreateUser(user models.User) error {
 	return err
 }
 
+// FindUserByUsername retrieves a user
+// using the provided username.
 func FindUserByUsername(username string) (models.User, error) {
 	var user models.User
 

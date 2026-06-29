@@ -9,6 +9,8 @@ import (
 	"github.com/srajalnikhra/cli-login-system/internal/repository"
 )
 
+// Register creates a new user account
+// and stores it in the database.
 func Register() {
 	fmt.Println("\n===== Register =====")
 

@@ -9,6 +9,8 @@ import (
 	"github.com/srajalnikhra/cli-login-system/internal/session"
 )
 
+// EnableMFA generates a TOTP secret,
+// displays a QR code, and enables MFA.
 func EnableMFA() {
 	if session.CurrentUser.MFAEnabled {
 		fmt.Println("\n✅ MFA is already enabled.")
@@ -21,7 +23,9 @@ func EnableMFA() {
 		return
 	}
 
-	fmt.Println("\nScan this QR Code with Google Authenticator:\n")
+	fmt.Println()
+	fmt.Println("Scan this QR Code with Google Authenticator:")
+	fmt.Println()
 
 	qr, err := qrcode.New(key.URL(), qrcode.Medium)
 	if err != nil {

@@ -2,6 +2,8 @@ package database
 
 import "fmt"
 
+// Migrate creates all required database tables
+// if they do not already exist.
 func Migrate() error {
 
 	usersTable := `

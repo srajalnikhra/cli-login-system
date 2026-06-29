@@ -50,7 +50,7 @@ cli-login-system/
 ### Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/srajalnikhra/cli-login-system.git
 cd cli-login-system
 ```
 

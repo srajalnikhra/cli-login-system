@@ -12,6 +12,8 @@ import (
 	"github.com/srajalnikhra/cli-login-system/internal/session"
 )
 
+// Login authenticates a user using
+// username, password and optional MFA.
 func Login() {
 	reader := bufio.NewReader(os.Stdin)
 

@@ -6,6 +6,8 @@ import (
 	"github.com/srajalnikhra/cli-login-system/internal/session"
 )
 
+// Profile displays information about
+// the currently logged-in user.
 func Profile() {
 	fmt.Println("\n===== Profile =====")
 	fmt.Println("Username:", session.CurrentUser.Username)

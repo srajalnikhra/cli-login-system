@@ -11,6 +11,8 @@ import (
 
 var DB *sql.DB
 
+// ConnectDB establishes a connection with PostgreSQL.
+// It retries for a few seconds to support Docker startup.
 func ConnectDB() error {
 	host := os.Getenv("DB_HOST")
 	if host == "" {

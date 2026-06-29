@@ -1,0 +1,24 @@
+# Go binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+cli-login-system
+
+# Build output
+bin/
+dist/
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
