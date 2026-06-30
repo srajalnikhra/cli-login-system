@@ -1,6 +1,6 @@
 # CLI Login System
 
-A secure Command Line Interface (CLI) Login System built using Go, PostgreSQL, Docker, and TOTP-based Multi-Factor Authentication (MFA).
+A secure Command Line Interface (CLI) Login System built using Go, PostgreSQL, Docker, and Time-based One-Time Password (TOTP) Multi-Factor Authentication (MFA).
 
 ## Features
 
@@ -8,7 +8,7 @@ A secure Command Line Interface (CLI) Login System built using Go, PostgreSQL, D
 - Secure Login
 - Password Hashing using bcrypt
 - PostgreSQL Database
-- Multi-Factor Authentication (TOTP)
+- Time-based One-Time Password (TOTP) MFA
 - QR Code Generation for MFA Setup
 - User Profile
 - Logout
@@ -27,7 +27,7 @@ A secure Command Line Interface (CLI) Login System built using Go, PostgreSQL, D
 
 ## Project Structure
 
-```
+```text
 cli-login-system/
 ├── internal/
 │   ├── auth/
@@ -45,32 +45,34 @@ cli-login-system/
 └── README.md
 ```
 
-## Running the Project (Without Docker)
+---
 
-### Clone Repository
+# Running the Project (Without Docker)
+
+## Clone the Repository
 
 ```bash
 git clone https://github.com/srajalnikhra/cli-login-system.git
 cd cli-login-system
 ```
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 go mod download
 ```
 
-### Run PostgreSQL
+## Configure PostgreSQL
 
 Create a PostgreSQL database named:
 
-```
+```text
 cli_login_db
 ```
 
-Default credentials used:
+Default database configuration:
 
-```
+```text
 Host: localhost
 Port: 5432
 User: postgres
@@ -78,7 +80,7 @@ Password: password
 Database: cli_login_db
 ```
 
-### Run Project
+## Run the Application
 
 ```bash
 go run main.go
@@ -86,62 +88,68 @@ go run main.go
 
 ---
 
-## Running with Docker
+# Running with Docker
 
-Build and start the application:
+## Build the image and start the containers
+
+Run this command the first time you use the project or whenever you modify the Go source code or Dockerfile.
 
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
 
-Or run in detached mode:
+## Launch the CLI application
+
+```bash
+docker exec -it cli-login-app ./cli-login-system
+```
+
+## Start existing containers (without rebuilding)
+
+If the containers have been stopped and no code changes were made:
 
 ```bash
 docker compose up -d
 ```
 
-Open the application container:
+Then launch the CLI again:
 
 ```bash
-docker exec -it cli-login-app sh
+docker exec -it cli-login-app ./cli-login-system
 ```
 
-Run the application:
-
-```bash
-./cli-login-system
-```
-
-Stop containers:
+## Stop the containers
 
 ```bash
 docker compose down
 ```
 
+> **Note:** The CLI application runs inside the Docker container. Once the containers are running, use the `docker exec` command above whenever you want to launch the interactive CLI.
+
 ---
 
-## MFA
+# Multi-Factor Authentication (MFA)
 
 The application supports Time-based One-Time Password (TOTP) authentication.
 
-Steps:
+### Steps
 
-1. Login
-2. Enable MFA
+1. Register or Login.
+2. Enable MFA.
 3. Scan the generated QR Code using Google Authenticator or Microsoft Authenticator.
-4. Use the generated OTP during future logins.
+4. Enter the generated OTP during future logins.
 
 ---
 
-## Security Features
+# Security Features
 
 - Passwords are securely hashed using bcrypt.
-- TOTP-based Multi-Factor Authentication.
+- Time-based One-Time Password (TOTP) authentication.
 - Secure PostgreSQL storage.
 - Dockerized application environment.
 
 ---
 
-## Author
+# Author
 
 **Srajal Nikhra**
