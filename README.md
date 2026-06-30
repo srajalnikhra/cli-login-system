@@ -90,7 +90,18 @@ go run main.go
 
 # Running with Docker
 
-## Build the image and start the containers
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/srajalnikhra/cli-login-system.git
+cd cli-login-system
+```
+
+## 2. Make sure Docker Desktop is running
+
+Start Docker Desktop and wait until Docker Engine is running.
+
+## 3. Build the image and start the containers
 
 Run this command the first time you use the project or whenever you modify the Go source code or Dockerfile.
 
@@ -98,27 +109,27 @@ Run this command the first time you use the project or whenever you modify the G
 docker compose up -d --build
 ```
 
-## Launch the CLI application
+## 4. Launch the CLI application
 
 ```bash
 docker exec -it cli-login-app ./cli-login-system
 ```
 
-## Start existing containers (without rebuilding)
+## 5. Run the application again later (without rebuilding)
 
-If the containers have been stopped and no code changes were made:
+If the containers are already created and no code changes were made:
 
 ```bash
 docker compose up -d
 ```
 
-Then launch the CLI again:
+Then launch the CLI:
 
 ```bash
 docker exec -it cli-login-app ./cli-login-system
 ```
 
-## Stop the containers
+## 6. Stop the containers
 
 ```bash
 docker compose down
